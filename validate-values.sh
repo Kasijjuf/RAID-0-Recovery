@@ -40,32 +40,38 @@ do
 done
 shift $(( $OPTIND - 1 ))
 
-# Input validation
-# Verify disk size is a multiple of sector size
+#  Input validation
+## Verify disk size is a multiple of sector size
 if (( "$smallest_disk_size" % "$sector_size" != 0 ));
 then
     echo "Sector size must be smaller than disk size" >&2
     exit 1;
 fi
-# Verify stripe size is a multiple of the number of disks
+#
+## Verify stripe size is a multiple of the number of disks
 if (( "$stripe_size" % "$number_of_disks" != 0 ));
 then
     echo "Stripe size is the combined size of one stripe spanning across all disks" >&2
     exit 1;
 fi
-# Verify stripe size is a multiple of the sector size
+#
+## Verify stripe size is a multiple of the sector size
 if (( "$stripe_size" % "$sector_size" != 0 ));
 then
     echo "Stripe size must be a multiple of sector size" >&2
     exit 1;
 fi
-# Verify sector size is not greater than stripe size / number of disks
+#
+## This condition can only be achieved using negative numbers or zero (which are
+## already accounted for) or by using a combination of positive numbers that would
+## fail one of the other tests. (I think. Someone please check me on that.)
 if (( "$sector_size" > ("$stripe_size" / "$number_of_disks") ));
 then
     echo "Stripe size can't be smaller than sector size times the number of disks" >&2
     exit 1;
 fi
-# Verify stripe size / number of disks is not greater than the smallest disk size
+#
+## Verify stripe size / number of disks is not greater than the smallest disk size
 if (( ("$stripe_size" / "$number_of_disks") > "$smallest_disk_size" ));
 then
     echo "Stripe size too big or smallest disk too small" >&2
