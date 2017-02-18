@@ -1,0 +1,11 @@
+# Valid values; These should pass input validation
+number_of_disks                  4
+smallest_disk_size    160041885696 B    (160 GB)
+stripe_size                  65536 B     (64KiB)
+sector_size                    512 B
+
+# Invalid values; Reason: Stripe size is not a multiple of sector size
+number_of_disks                  3
+smallest_disk_size              20 B
+stripe_size                     15 B
+sector_size                      4 B
