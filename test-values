@@ -4,8 +4,33 @@ smallest_disk_size    160041885696 B    (160 GB)
 stripe_size                  65536 B     (64KiB)
 sector_size                    512 B
 
-# Invalid values; Reason: Stripe size is not a multiple of sector size
+
+===========
+
+
+# Invalid values; Disk size is not a multiple of sector size
+number_of_disks                  2
+smallest_disk_size              10 B
+stripe_size                      8 B
+sector_size                      4 B
+
+
+# Invalid values; Stripe size is not a multiple of the number of disks
+number_of_disks                  2
+smallest_disk_size               2 B
+stripe_size                      3 B
+sector_size                      1 B
+
+
+# Invalid values; Stripe size is not a multiple of sector size
 number_of_disks                  3
 smallest_disk_size              20 B
 stripe_size                     15 B
 sector_size                      4 B
+
+
+# Invalid values; (Stripe size / number of disks) is greater than the smallest disk size
+number_of_disks                  3
+smallest_disk_size               6 B
+stripe_size                     24 B
+sector_size                      1 B

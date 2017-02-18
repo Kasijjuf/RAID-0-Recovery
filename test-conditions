@@ -1,0 +1,64 @@
+# Abbreviations
+n number_of_disks
+b smallest_disk_size
+t stripe_size
+s sector_size
+
+
+# Valid conditions; This should pass input validation
+b mod s = 0
+t mod n = 0
+t mod s = 0
+s <= t / n
+t / n <= b
+
+
+===========
+
+
+# Invalid conditions; A value is not a positive integer
+! [[ $OPTARG =~ "^[0-9]+$" ]] || $OPTARG == 0
+
+
+# Invalid conditions; Disk size is not a multiple of sector size
+b mod s != 0
+t mod n = 0
+t mod s = 0
+s <= t / n
+t / n <= b
+
+
+# Invalid conditions; Stripe size is not a multiple of the number of disks
+b mod s = 0
+t mod n != 0
+t mod s = 0
+s <= t / n
+t / n <= b
+
+
+# Invalid conditions; Stripe size is not a multiple of sector size
+b mod s = 0
+t mod n = 0
+t mod s != 0
+s <= t / n
+t / n <= b
+
+
+# Invalid conditions; Sector size is greater than (stripe size / number of disks)
+#
+# This condition can only be achieved using negative numbers or zero (which are
+# already accounted for) or by using a combination of positive numbers that would
+# fail one of the other tests. (I think. Someone please check me on that.)
+b mod s = 0
+t mod n = 0
+t mod s = 0
+s > t / n
+t / n <= b
+
+
+# Invalid conditions; (Stripe size / number of disks) is greater than the smallest disk size
+b mod s = 0
+t mod n = 0
+t mod s = 0
+s <= t / n
+t / n > b
