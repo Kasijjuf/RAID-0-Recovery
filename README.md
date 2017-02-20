@@ -13,6 +13,7 @@ A collection of tools to reconstruct the striped volume of a RAID 0 array from m
 * A free/libre software project (GPLv3+)
 
 ## What this consists of (planned):
-* A script to generate random stripes from the component disk images for the purpose of verifying the stripe size
-* A script to create one whole non-RAID image or disk from all the individual disk images
-* A script to take the logfiles generated from individually copying the component disks of a RAID 0 array with ddrescue and generate a logfile of the whole reconsructed volume suitable as an input for the ddru_findbad and ddru_ntfsfindbad commands in ddrutility
+* [x] A script to handle input validation for all the other scripts
+* [ ] A script to generate random stripes from the component disk images for the purpose of verifying the stripe size
+* [ ] A script to create one whole non-RAID image or disk from all the individual disk images
+* [ ] A script to take the logfiles generated from individually copying the component disks of a RAID 0 array with ddrescue and generate a logfile of the whole reconsructed volume suitable as an input for the ddru_findbad and ddru_ntfsfindbad commands in ddrutility
