@@ -15,6 +15,13 @@ stripe_size                      8 B
 sector_size                      4 B
 
 
+# Invalid values; Sector size is greater than disk size
+number_of_disks       
+smallest_disk_size    # TODO Create a test to test this state
+stripe_size           # TODO or prove this test is redundant
+sector_size           
+
+
 # Invalid values; Stripe size is not a multiple of the number of disks
 number_of_disks                  2
 smallest_disk_size               2 B
