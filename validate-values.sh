@@ -44,7 +44,7 @@ shift $(( $OPTIND - 1 ))
 
 #  Input validation
 
-## Verifiy all neccessary options exist
+## Verify all necessary options exist
 if [ ! $number_of_disks ];
 then
     error_insufficient_options="true"
